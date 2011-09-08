@@ -23,9 +23,8 @@ class Video(models.Model):
         Tag.objects.update_tags(self, tag_list)
     tags = property(_get_tags, _set_tags)
 
-    def save(self, force_insert=False, force_update=False):
-        super(Video, self).save(force_insert=force_insert,
-				force_update=force_update)
+    def save(self, *args, **kwargs):
+        super(Video, self).save(*args, **kwargs)
         Tag.objects.update_tags(self, self.tag_list)
 
     def embed_url(self):
